@@ -21,8 +21,8 @@ jobs:
           tar -zxvf cx.tar.gz -C /usr/local/bin
           # Assuming the executable is directly in the tar.gz root and is named 'cx'
           chmod +x /usr/local/bin/cx
-          # Check that the CLI is installed
-          cx --version
+          # Verify the installation
+          /usr/local/bin/cx version
 
       - name: Run Checkmarx Scan
         env:
