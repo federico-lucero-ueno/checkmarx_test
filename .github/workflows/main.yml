@@ -33,7 +33,8 @@ jobs:
           # Use GitHub's repository name for the Checkmarx project name
           PROJECT_NAME="${GITHUB_REPOSITORY}"  # This strips any owner prefix to just use the repo name
           echo "Using project name: $PROJECT_NAME"
+          ABSOLUTE_PATH=$(pwd)
           # Insert the Checkmarx scan command, ensuring to use the PROJECT_NAME
           # Replace the placeholder with the actual command according to your Checkmarx setup
-          /usr/local/bin/cx scan create --project-name "$PROJECT_NAME" --sources './' --base-auth-uri "$CHECKMARX_HOST" --apikey "$CHECKMARX_API_KEY" --debug --branch main
+          /usr/local/bin/cx scan create --project-name "$PROJECT_NAME" -s "$ABSOLUTE_PATH" --base-auth-uri "$CHECKMARX_HOST" --apikey "$CHECKMARX_API_KEY" --debug --branch main
           echo "Scan complete."
