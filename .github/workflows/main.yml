@@ -13,6 +13,14 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
+      - name: Install Checkmarx CLI
+        run: |
+          curl -L "http://download-url-for-checkmarx-cli" -o cx.zip
+          unzip cx.zip -d cx
+          sudo mv cx/cx /usr/local/bin
+          sudo chmod +x /usr/local/bin/cx
+          cx --version
+
       - name: Run Checkmarx Scan
         env:
           CHECKMARX_HOST: ${{ secrets.CHECKMARX_HOST }}
