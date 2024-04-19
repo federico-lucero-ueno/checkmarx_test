@@ -35,5 +35,5 @@ jobs:
           echo "Using project name: $PROJECT_NAME"
           # Insert the Checkmarx scan command, ensuring to use the PROJECT_NAME
           # Replace the placeholder with the actual command according to your Checkmarx setup
-          /usr/local/bin/cx scan create --project-name "$PROJECT_NAME" --base-auth-uri "$CHECKMARX_HOST" --apikey "$CHECKMARX_API_KEY" --debug --branch main
+          /usr/local/bin/cx scan create --project-name "$PROJECT_NAME" --sources './' --base-auth-uri "$CHECKMARX_HOST" --apikey "$CHECKMARX_API_KEY" --debug --branch main
           echo "Scan complete."
