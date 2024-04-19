@@ -15,10 +15,13 @@ jobs:
 
       - name: Install Checkmarx CLI
         run: |
-          curl -L "https://github.com/Checkmarx/ast-cli/releases/download/2.0.74/ast-cli_2.0.74_linux_x64.tar.gz" -o cx.zip
-          unzip cx.zip -d cx
-          sudo mv cx/cx /usr/local/bin
-          sudo chmod +x /usr/local/bin/cx
+          # Download the .tar.gz archive
+          curl -L "https://github.com/Checkmarx/ast-cli/releases/download/2.0.74/ast-cli_2.0.74_linux_x64.tar.gz" -o cx.tar.gz
+          # Extract the archive using tar
+          tar -zxvf cx.tar.gz -C /usr/local/bin
+          # Assuming the executable is directly in the tar.gz root and is named 'cx'
+          chmod +x /usr/local/bin/cx
+          # Check that the CLI is installed
           cx --version
 
       - name: Run Checkmarx Scan
