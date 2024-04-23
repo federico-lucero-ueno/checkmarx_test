@@ -15,11 +15,11 @@ jobs:
 
       - name: Install Checkmarx CLI
         run: |
-          # Download the .tar.gz archive
+          # Descargo el archivo .tar.gz 
           curl -L "https://github.com/Checkmarx/ast-cli/releases/download/2.0.74/ast-cli_2.0.74_linux_x64.tar.gz" -o cx.tar.gz
-          # Extract the archive using tar
+          # Extraigo archivo y lo llevo a /usr/local/bin
           tar -zxvf cx.tar.gz -C /usr/local/bin
-          # Assuming the executable is directly in the tar.gz root and is named 'cx'
+          # Permisos de ejecucion
           chmod +x /usr/local/bin/cx
           # Verify the installation
           /usr/local/bin/cx version
@@ -31,10 +31,8 @@ jobs:
         run: |
           echo "Starting Checkmarx scan..."
           # Use GitHub's repository name for the Checkmarx project name
-          PROJECT_NAME="${GITHUB_REPOSITORY}"  # This strips any owner prefix to just use the repo name
+          PROJECT_NAME="${GITHUB_REPOSITORY}" 
           echo "Using project name: $PROJECT_NAME"
           ABSOLUTE_PATH=$(pwd)
-          # Insert the Checkmarx scan command, ensuring to use the PROJECT_NAME
-          # Replace the placeholder with the actual command according to your Checkmarx setup
           /usr/local/bin/cx scan create --project-name "$PROJECT_NAME" -s "$ABSOLUTE_PATH" --base-auth-uri "$CHECKMARX_HOST" --apikey "$CHECKMARX_API_KEY" --debug --branch main
           echo "Scan complete."
